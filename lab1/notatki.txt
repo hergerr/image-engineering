@@ -1,0 +1,10 @@
+1. dir wyświetla wszystkie pola i metody
+2. pomoc: help(moduł)
+3. / escapuje koniec linii
+		a='Dosc \
+		dluga tresc'
+4. id() - sprawdzenie wartości funkcji
+5. możliwe jest else do fora lub while'a
+6. dir() zwraca pola i metody dostępne w klasie
+7. metoda bez self - metoda statyczna
+8. zmienna poza konstruktorem - zmienna statyczna
