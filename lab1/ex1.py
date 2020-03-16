@@ -19,3 +19,4 @@ def count_sinus():
             f.write(f"sin({inputs[i]}) = {outputs[i]}\n")
 
 count_sinus()
+print_cowsay()
