@@ -46,7 +46,7 @@ while green != max_value :
 # one row 
 numpy_array = numpy.asarray(lst, dtype=numpy.uint8)
 # repeat 'height' times
-image = numpy.repeat(numpy_array[numpy.newaxis,...], height, axis=0)
+image = numpy.tile(numpy_array, (1, height))
 
 # Save the PPM image as an ASCII file
 with open('lab4-ascii.ppm', 'w') as fh:
