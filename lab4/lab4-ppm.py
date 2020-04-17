@@ -44,7 +44,7 @@ while green != max_value :
     lst.extend([red, green, blue])
 
 # one row 
-numpy_array = numpy.asarray(lst)
+numpy_array = numpy.asarray(lst, dtype=numpy.uint8)
 # repeat 'height' times
 image = numpy.repeat(numpy_array[numpy.newaxis,...], height, axis=0)
 

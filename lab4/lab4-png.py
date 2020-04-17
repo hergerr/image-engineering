@@ -9,10 +9,10 @@ image = numpy.array([[[255,   0,   0], [  0, 255,  0]],
                     dtype=numpy.uint8)  # TODO: implement
 
 # Construct signature
-png_file_signature = ''  # TODO: implement
+png_file_signature = b"\x89" + "PNG\r\n\x1A\n".encode('ascii')  # TODO: implement
 
 # Construct header
-header_id = ''  # TODO: implement
+header_id = 'IDHR'  # TODO: implement
 header_content = ''  # TODO: implement
 header_size = ''  # TODO: implement
 header_crc = ''  # TODO: implement
