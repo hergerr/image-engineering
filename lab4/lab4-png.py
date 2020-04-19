@@ -3,18 +3,50 @@ import numpy
 import struct
 import zlib
 
-# Image data
-image = numpy.array([[[255,   0,   0], [0, 255,  0]],
-                     [[0,   0, 255], [55,  55,  0]]],
-                    dtype=numpy.uint8)
+height = 80
+max_value = 255
+
+red, green, blue = 1, 1, 1
+row = numpy.array([red, green, blue], dtype=numpy.uint8)
+
+while blue != max_value:
+    blue += 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while green != max_value:
+    green += 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while blue != 1:
+    blue -= 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while red != max_value:
+    red += 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while green != 1:
+    green -= 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while blue != max_value:
+    blue += 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+while green != max_value:
+    green += 2
+    row = numpy.vstack([row, [red, green, blue]])
+
+
+image = numpy.repeat(row[numpy.newaxis, ...], height, axis=0)
 
 # Construct signature
 png_file_signature = b"\x89" + \
-    "PNG\r\n\x1A\n".encode('ascii')  # TODO: implement
+    "PNG\r\n\x1A\n".encode('ascii') 
 h, w, _ = image.shape
 
 # Construct header
-# ! big endian, I - 4b unsigned int, B 1B unsigned char 
+# ! big endian, I - 4b unsigned int, B 1B unsigned char
 header_id = b'IHDR'
 header_content = struct.pack('!IIBBBBB', w, h, 8, 2, 0, 0, 0)
 header_size = struct.pack('!I', len(header_content))    # it means unsigned int

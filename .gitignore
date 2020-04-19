@@ -1,2 +1,5 @@
 lab*/.vscode/
 lab*/venv/
+lab*/__pycache__/
+*.ppm
+*.png
