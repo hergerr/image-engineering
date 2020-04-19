@@ -1,12 +1,23 @@
 #!/usr/bin/env python3
-import numpy
+import numpy as np
 import lab4_utils
+import cv2 as cv
+
+from matplotlib import pyplot as plt
+from PIL import Image
+
 
 # 0. Image data
-# TODO: implement
+data = lab4_utils.create_rainbow()
+plt.imshow(data)
+plt.show()
 
 # 1. Convert RGB to YCbCr
-# TODO: implement
+ycbcr_matrix = np.array(
+    [[.229, .587, .114], [-.168, -.331, .5], [.5, -.418, -.082]])
+a = np.clip(np.dot(data, ycbcr_matrix), a_min=0, a_max=255)
+plt.imshow(a.astype(np.uint8))
+plt.show()
 
 # 2. Downsampling on Cb Cr
 # TODO: implement
