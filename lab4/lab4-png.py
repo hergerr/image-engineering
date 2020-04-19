@@ -41,8 +41,7 @@ while green != max_value:
 image = numpy.repeat(row[numpy.newaxis, ...], height, axis=0)
 
 # Construct signature
-png_file_signature = b"\x89" + \
-    "PNG\r\n\x1A\n".encode('ascii') 
+png_file_signature = b"\x89" + "PNG\r\n\x1A\n".encode('ascii')
 h, w, _ = image.shape
 
 # Construct header
@@ -54,12 +53,15 @@ header_crc = struct.pack('!I', zlib.crc32(header_id + header_content))
 png_file_header = header_size + header_id + header_content + header_crc
 
 # Construct data
+# no idea why w*3 needs + 1 in reshape
 data_id = b'IDAT'
-idat = numpy.empty((h, w*3 + 1), dtype=numpy.uint8)
-idat[:, 1:] = image.reshape(h, w*3)
-idat[:, 0] = 0
+zero_byte_data = numpy.empty((h, w*3 + 1), dtype=numpy.uint8)
 
-data_content = zlib.compress(idat, 9)
+# reshaping from 3D to 2D wih 2D with 0 byte
+zero_byte_data[:, 1:] = image.reshape(h, w*3)
+zero_byte_data[:, 0] = 0
+
+data_content = zlib.compress(zero_byte_data, 9)
 data_size = struct.pack('!I', len(data_content))
 data_crc = struct.pack('!I', zlib.crc32(data_id + data_content))
 png_file_data = data_size + data_id + data_content + data_crc
