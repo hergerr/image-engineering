@@ -2,5 +2,5 @@ lab*/.vscode/
 lab*/venv/
 lab*/__pycache__/
 lab*/*.ipynb_checkpoints
-*.ppm
-*.png
+lab4/*.ppm
+lab4/*.png
